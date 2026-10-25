@@ -17,6 +17,9 @@ Built with React, TypeScript and Vite. Static hosting, no account, backend, anal
 - Three saved scenarios, JSON import/export and monthly repayment CSV export.
 - Rent versus buy with investment of the cash-flow difference on both paths.
 - Town/postcode search through OpenPLZ; explicitly choose a result to apply the correct state tax.
+- Default research focus: apartments in 81245 / Neupasing. The Paul-Gerhardt-Allee overview starts with the municipality’s ≈2,400 homes and ten project/subset records, including 295 developer-reported sold/handed-over apartments and a separate 68-home block acquisition. Housing stock, sales claims and transaction evidence stay distinct.
+- Fourteen individual apartment references (four with displayed prices) and five secondary house references retain original sources. Apartment details include rooms, Baujahr, Hausgeld periods, extra parking and leasehold charges where disclosed. Missing closing prices and sale dates stay missing. Three dated 2017 project asking-price ranges have publication-month mortgage context.
+- Historical German mortgage conditions from 2003, with year/fixation filters, monthly observations and coverage-aware period averages beside citywide Munich price summaries.
 - Munich half-year purchase-price samples for eight segments, with 2024, corrected 2025 and 2026 original reports.
 - On-demand embed of Bavaria's official regional market dashboard, plus BORIS and local committee resources.
 - National transaction-price history since 2015 from Eurostat / Destatis, including provisional flags.

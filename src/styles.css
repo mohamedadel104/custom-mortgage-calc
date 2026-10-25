@@ -1842,3 +1842,285 @@ td a {
     order: 1;
   }
 }
+.sales-filter-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.sales-filter-row .field {
+  margin-bottom: 0;
+}
+.location-search > .microcopy {
+  margin-bottom: 0;
+}
+.sales-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 20px 0 14px;
+  border-top: 1px solid #e5e8eb;
+  border-bottom: 1px solid #e5e8eb;
+}
+.sales-stats > div {
+  padding: 18px 16px;
+  border-right: 1px solid #e5e8eb;
+}
+.sales-stats > div:first-child {
+  padding-left: 0;
+}
+.sales-stats > div:last-child {
+  border-right: 0;
+}
+.sales-stats span,
+.sales-stats small {
+  display: block;
+  color: #59616b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.sales-stats strong {
+  display: block;
+  margin: 7px 0;
+  font-size: 28px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.sales-stats button {
+  margin-top: 8px;
+  font-size: 13px;
+}
+.sales-coverage-line {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.sale-reference {
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e8eb;
+}
+.sale-reference-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.sale-reference h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+.sale-reference p {
+  margin: 7px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #59616b;
+}
+.sale-reference-price {
+  flex-shrink: 0;
+  text-align: right;
+}
+.apartment-costs {
+  margin: 10px 0;
+}
+.apartment-costs b {
+  color: #30363f;
+  font-weight: 500;
+}
+.sale-reference-price b {
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.sale-reference-price small {
+  display: block;
+  color: #59616b;
+  font-size: 13px;
+  margin-top: 5px;
+}
+.sale-reference-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  font-size: 13px;
+  color: #59616b;
+}
+.sale-reference-footer a {
+  color: #252a31;
+}
+.sale-reference-list {
+  margin-bottom: 18px;
+}
+.sales-empty {
+  padding: 22px 0;
+}
+.sales-empty h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.sales-empty p {
+  max-width: 75ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #59616b;
+}
+.sales-rate-readout {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 0 12px;
+}
+.sales-rate-readout > strong {
+  font-size: 36px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.sales-rate-readout p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #59616b;
+}
+#mortgage-history,
+#individual-sales {
+  scroll-margin-top: 76px;
+}
+.research-details > summary {
+  cursor: pointer;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid #e3e5e8;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.research-details > .page-stack {
+  margin-top: 12px;
+}
+.neighborhood-stats {
+  margin-top: 0;
+}
+.research-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 14px;
+}
+.development-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+.development-heading h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.development-heading .field {
+  width: 250px;
+  margin-bottom: 0;
+}
+.development-row {
+  display: grid;
+  grid-template-columns: 1fr 145px 1.3fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.development-row h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.development-row p,
+.development-row span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+.development-count {
+  text-align: right;
+}
+.development-count strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.development-count span {
+  display: block;
+}
+.development-evidence b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.development-evidence summary,
+.project-price-history > summary {
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.development-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.development-more {
+  margin: 16px 0 6px;
+}
+.project-price-history {
+  margin: 20px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 700px) {
+  .location-search .search-copy {
+    display: none;
+  }
+  .sales-filter-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sales-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sales-stats > div {
+    padding: 14px 10px;
+  }
+  .sales-stats > div:nth-child(odd) {
+    padding-left: 0;
+  }
+  .sales-stats > div:nth-child(2) {
+    border-right: 0;
+  }
+  .sales-stats > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e5e8eb;
+  }
+  .sale-reference-main {
+    display: block;
+  }
+  .sale-reference-price {
+    margin: 12px 0;
+    text-align: left;
+  }
+  .sales-rate-readout {
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .sales-rate-readout > strong {
+    font-size: 30px;
+  }
+  .development-heading {
+    display: block;
+  }
+  .development-heading .field {
+    width: 100%;
+    margin: 14px 0 0;
+  }
+  .development-row {
+    grid-template-columns: minmax(0, 1fr) 94px;
+    gap: 8px 16px;
+  }
+  .development-evidence {
+    grid-column: 1 / -1;
+  }
+}

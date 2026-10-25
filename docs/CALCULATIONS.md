@@ -54,6 +54,12 @@ The ECB series are annualised agreed rates / narrowly defined effective rates on
 
 This compounding conversion is an approximation; it does not derive a bank's actual Sollzins from mixed statistical conventions, determine an offer or change the chosen fixed period. New source observations never overwrite the user's saved scenario.
 
+## Historical rate comparisons
+
+Historical rate context in Locations uses the equally weighted arithmetic mean of the monthly published AAR/NDER values within the selected calendar period. It reports available and expected months, never fills missing months with zero, and rejects duplicate-month observations. This is a descriptive benchmark, not the actual rate on a property's loan. An undated broker reference is never joined to the review year's rate. Citywide half-year price summaries are joined only to January–June rates of the same year.
+
+Dated historical project asking-price ranges use the article’s publication month for mortgage context, explicitly labeled as such. Construction completion, sell-out, publication, contract and handover dates are different events; none is substituted for a unit’s undisclosed sale date. Neighborhood housing stock, developer-reported sold units, institutional acquisition units and individual reference samples are never added into one transaction count.
+
 ## Rent versus buy
 
 The renter starts with a portfolio equal to the buyer's cash used for acquisition. Common unused savings/reserves are excluded on both paths. Every month both portfolios accrue the assumed monthly-equivalent return; then the less expensive housing path invests its cost advantage. Ownership costs comprise scheduled payments, actual special repayment when due, and property running/maintenance costs grown by the entered cost inflation. Renting costs comprise cold rent grown by rent growth plus tenant running costs grown by cost inflation.

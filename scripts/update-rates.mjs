@@ -7,7 +7,7 @@ const previous = await readFile(destination, 'utf8')
   .catch(() => null);
 const series = await Promise.all(
   SERIES.map(async (item) => {
-    const url = `https://data-api.ecb.europa.eu/service/data/MIR/${item.key}?format=csvdata&lastNObservations=24`;
+    const url = `https://data-api.ecb.europa.eu/service/data/MIR/${item.key}?format=csvdata&startPeriod=2003-01`;
     let lastError;
     for (let attempt = 0; attempt < 3; attempt++) {
       try {

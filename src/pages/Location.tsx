@@ -13,6 +13,7 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import { LineChart } from '../components/Charts';
+import SalesResearch from '../components/SalesResearch';
 import { NumberField } from '../components/InputsPanel';
 import { downloadFile } from '../components/PlanResults';
 import { BAVARIA_LINKS, BAVARIA_REVIEWED, MUNICH_REPORTS, MUNICH_SEGMENTS } from '../data/bavaria';
@@ -64,7 +65,7 @@ export default function Location({
   update: (p: Partial<Inputs>) => void;
   goCalculator: () => void;
 }) {
-  const [query, setQuery] = useState('80331');
+  const [query, setQuery] = useState('81245');
   const [results, setResults] = useState<Locality[]>([]),
     [place, setPlace] = useState<Locality | null>(null);
   const [searching, setSearching] = useState(false),
@@ -135,20 +136,20 @@ export default function Location({
     <div className="page-stack">
       <div className="page-title">
         <div>
-          <h1>Location research</h1>
-          <p>Start in Bavaria. Follow the evidence all the way to the property.</p>
+          <h1>Local sales & financing history</h1>
+          <p>
+            81245 / Neupasing first · Public evidence, disclosed prices and mortgage conditions.
+          </p>
         </div>
-        <span className="badge green">
-          <Mountain size={14} />
-          Bavaria first
-        </span>
       </div>
       <section className="location-search card">
         <div className="search-copy">
           <MapPin size={21} />
           <div>
-            <h2>Where would you like to live?</h2>
-            <p>Look up a German postcode or town and use its state tax in your plan.</p>
+            <h2>Choose the place to research</h2>
+            <p>
+              Start with 81245. Select a search result to change the evidence area and state tax.
+            </p>
           </div>
         </div>
         <form onSubmit={search} className="search-form">
@@ -161,17 +162,14 @@ export default function Location({
             value={query}
             maxLength={100}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. 80331 or München"
+            placeholder="e.g. 81245 or München"
           />
           <button className="primary-button" disabled={searching || query.trim().length < 2}>
             {searching ? 'Searching…' : 'Find location'}
             <ArrowUpRight size={15} />
           </button>
         </form>
-        <p className="microcopy">
-          Explicit searches go to OpenPLZ. Financial inputs stay in your browser. Up to 20 matches
-          are shown; use a postcode to narrow a large city.
-        </p>
+        <p className="microcopy">OpenPLZ lookup · finances stay on this device.</p>
         {searchError && (
           <p className="notice warning" role="status">
             {searchError}
@@ -207,268 +205,279 @@ export default function Location({
           </div>
         )}
       </section>
-      <div className="location-two-col">
-        <section className="card">
-          <div className="card-heading">
-            <div>
-              <h2>Put the asking price in context.</h2>
-              <p>Uses the purchase price currently in your calculator.</p>
-            </div>
-          </div>
-          <div className="padded">
-            <div className="field-grid">
-              <NumberField
-                label="Living area · Wohnfläche"
-                value={area}
-                onChange={setArea}
-                suffix="m²"
-                min={1}
-                max={10000}
-              />
-              <div className="price-per-metre">
-                <span>Your target price / m²</span>
-                <strong>{euro(inputs.price / area)}</strong>
-                <small>
-                  {euro(inputs.price)} ÷ {area} m²
-                </small>
-              </div>
-            </div>
-            <p className="microcopy">
-              Check whether the quoted living area follows the applicable measurement rules.
-              Balconies, roof slopes, land, parking and condition affect comparability.
-            </p>
-          </div>
-        </section>
-        <section className="bavaria-card">
-          <Mountain size={29} />
-          <h2>Go beyond the listing.</h2>
-          <p>
-            Use the official local committee, land values and the Bavarian market report. Some
-            detailed records and reports require payment or a justified interest.
-          </p>
-          <p>Land reference values cover the land. They do not establish the value of a home.</p>
-          <div className="inline-links">
-            <a href={BAVARIA_LINKS.boris} target="_blank" rel="noreferrer">
-              BORIS Bayern <ExternalLink size={13} />
-            </a>
-            <a href={BAVARIA_LINKS.committees} target="_blank" rel="noreferrer">
-              Local committee <ExternalLink size={13} />
-            </a>
-          </div>
-        </section>
-      </div>
-      <section className="card">
-        <div className="card-heading">
-          <div>
-            <h2>A local history you can trace.</h2>
-            <p>Municipal half-year reports · selected reported means in €/m² · H1 2024-H1 2026</p>
-          </div>
-          <span className="badge amber">Provisional samples</span>
-        </div>
-        <div className="padded">
-          <label className="field">
-            <span className="field-label">Property segment</span>
-            <select value={segment} onChange={(e) => setSegment(e.target.value)}>
-              {MUNICH_SEGMENTS.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <LineChart
-            points={MUNICH_REPORTS.map((r, i) => ({
-              label: r.period,
-              value: currentSegment.values[i],
-            }))}
-            valueLabel={(n) => euro(n)}
-            label={`${currentSegment.label}: Munich reported half-year price means for 2024, 2025 and 2026`}
-          />
-          <div className="notice info">
-            <Info size={17} />
-            <p>
-              {currentSegment.notes} These are Munich city samples, not values for your selected
-              postcode. Housing mix and typical property sizes change; the line is not a
-              constant-quality index or an individual valuation. Reports treat current half-year
-              prices as provisional.
-            </p>
-          </div>
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Observation period</th>
-                  <th>Reported mean / m²</th>
-                  <th>Original evidence</th>
-                </tr>
-              </thead>
-              <tbody>
-                {MUNICH_REPORTS.map((report, i) => (
-                  <tr key={report.year}>
-                    <td>{report.period}</td>
-                    <td>{euro(currentSegment.values[i])}</td>
-                    <td>
-                      <a href={report.url} target="_blank" rel="noreferrer">
-                        Municipal report · p. 9 <ExternalLink size={12} />
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="microcopy">
-            Reviewed {BAVARIA_REVIEWED}; 2025 uses the corrected November publication. This selected
-            factual extract is maintained manually. For newer publications and the full historical
-            charts, check{' '}
-            <a href={BAVARIA_LINKS.munich} target="_blank" rel="noreferrer">
-              Munich’s report archive
-            </a>
-            .
-          </p>
-        </div>
-      </section>
-      <section className="card">
-        <div className="card-heading">
-          <div>
-            <h2>Explore the state’s own market dashboard.</h2>
-            <p>
-              2026 report · regional housing-price evidence, city/county comparisons and market
-              activity.
-            </p>
-          </div>
-          <a
-            className="icon-button"
-            href={BAVARIA_LINKS.dashboard}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open official Bavaria dashboard"
-          >
-            <ExternalLink size={18} />
-          </a>
-        </div>
-        <div className="padded">
-          <p className="body-copy">
-            The official interactive dashboard gives access to Bavaria’s published local evidence.
-            We link and embed the original so its methodology, updates and attribution stay visible.
-            For Nürnberg, the{' '}
-            <a href={BAVARIA_LINKS.nuremberg} target="_blank" rel="noreferrer">
-              city’s market summary
-            </a>{' '}
-            also explains current completed-sale ranges and segment differences.
-          </p>
-          <button className="secondary-button" onClick={() => setEmbed(!embed)}>
-            {embed ? 'Close embedded dashboard' : 'Load official interactive dashboard'}
-            <ArrowUpRight size={15} />
-          </button>
-          <p className="microcopy">
-            Loading the embed connects to Infogram, a third-party service used by the Bavarian
-            publisher, and may use its cookies. You can instead open the original link above.
-          </p>
-          {embed && (
-            <iframe
-              className="official-dashboard"
-              src={BAVARIA_LINKS.dashboardEmbed}
-              title="Official Bavarian property market dashboard 2026"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-              allowFullScreen
-            />
-          )}
-        </div>
-      </section>
-      <section className="card">
-        <div className="card-heading">
-          <div>
-            <h2>How has the broader market moved?</h2>
-            <p>
-              Transaction-based house-price index · 2025 = 100. This is national, not a local €/m²
-              estimate.
-            </p>
-          </div>
-          <select
-            aria-label="National history range"
-            value={nationalRange}
-            onChange={(e) => setNationalRange(e.target.value)}
-          >
-            <option value="all">Since 2015</option>
-            <option value="2020">Since 2020</option>
-            <option value="2023">Since 2023</option>
-          </select>
-        </div>
-        <div className="padded">
-          {national.loading && <p>Loading official historical data…</p>}
-          {national.error && (
-            <div className="notice warning">
-              {national.error}
-              <button onClick={national.reload}>Retry</button>
-            </div>
-          )}
-          {latest && (
-            <>
-              <div className="index-stats">
+      <SalesResearch key={place?.postalCode ?? '81245'} postcode={place?.postalCode ?? '81245'} />
+      <details className="research-details">
+        <summary>More research · your comparisons, land values and wider market data</summary>
+        <div className="page-stack">
+          <div className="location-two-col">
+            <section className="card">
+              <div className="card-heading">
                 <div>
-                  <span>
-                    Latest · {latest.period}
-                    {latest.status.includes('p') ? ' · provisional' : ''}
-                  </span>
-                  <b>{latest.value.toFixed(1)}</b>
-                </div>
-                <div>
-                  <span>Year-on-year change</span>
-                  <b>
-                    {previousYear
-                      ? `${percent((latest.value / previousYear.value - 1) * 100)}`
-                      : 'Unavailable'}
-                  </b>
-                </div>
-                <div>
-                  <span>Geographic coverage</span>
-                  <b>Germany overall</b>
+                  <h2>Put the asking price in context.</h2>
+                  <p>Uses the purchase price currently in your calculator.</p>
                 </div>
               </div>
-              <LineChart
-                points={filteredNational.map((o) => ({
-                  label: `${o.period}${o.status.includes('p') ? '*' : ''}`,
-                  value: o.value,
-                }))}
-                valueLabel={(n) => n.toFixed(1)}
-                label="German national transaction house-price index from Eurostat / Destatis, base 2025 = 100"
-              />
-              <p className="microcopy">
-                Eurostat / Destatis · * provisional. Source update: {national.data!.sourceUpdated}.
-                Retrieved {national.data!.retrievedAt.slice(0, 10)}.{' '}
-                <a href={national.data!.url} target="_blank" rel="noreferrer">
-                  Original data
-                </a>
-                . National change cannot establish the past sale value of a particular home.
+              <div className="padded">
+                <div className="field-grid">
+                  <NumberField
+                    label="Living area · Wohnfläche"
+                    value={area}
+                    onChange={setArea}
+                    suffix="m²"
+                    min={1}
+                    max={10000}
+                  />
+                  <div className="price-per-metre">
+                    <span>Your target price / m²</span>
+                    <strong>{euro(inputs.price / area)}</strong>
+                    <small>
+                      {euro(inputs.price)} ÷ {area} m²
+                    </small>
+                  </div>
+                </div>
+                <p className="microcopy">
+                  Check whether the quoted living area follows the applicable measurement rules.
+                  Balconies, roof slopes, land, parking and condition affect comparability.
+                </p>
+              </div>
+            </section>
+            <section className="bavaria-card">
+              <Mountain size={29} />
+              <h2>Go beyond the listing.</h2>
+              <p>
+                Use the official local committee, land values and the Bavarian market report. Some
+                detailed records and reports require payment or a justified interest.
               </p>
-            </>
-          )}
-        </div>
-      </section>
-      <Comparables targetPrice={inputs.price} area={area} place={place} />
-      <section className="card">
-        <div className="card-heading">
-          <div>
-            <h2>NRW · local property reference values</h2>
-            <p>Actual official norm-property reference records and historical summaries.</p>
+              <p>
+                Land reference values cover the land. They do not establish the value of a home.
+              </p>
+              <div className="inline-links">
+                <a href={BAVARIA_LINKS.boris} target="_blank" rel="noreferrer">
+                  BORIS Bayern <ExternalLink size={13} />
+                </a>
+                <a href={BAVARIA_LINKS.committees} target="_blank" rel="noreferrer">
+                  Local committee <ExternalLink size={13} />
+                </a>
+              </div>
+            </section>
           </div>
+          <section className="card">
+            <div className="card-heading">
+              <div>
+                <h2>A local history you can trace.</h2>
+                <p>
+                  Municipal half-year reports · selected reported means in €/m² · H1 2024-H1 2026
+                </p>
+              </div>
+              <span className="badge amber">Provisional samples</span>
+            </div>
+            <div className="padded">
+              <label className="field">
+                <span className="field-label">Property segment</span>
+                <select value={segment} onChange={(e) => setSegment(e.target.value)}>
+                  {MUNICH_SEGMENTS.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <LineChart
+                points={MUNICH_REPORTS.map((r, i) => ({
+                  label: r.period,
+                  value: currentSegment.values[i],
+                }))}
+                valueLabel={(n) => euro(n)}
+                label={`${currentSegment.label}: Munich reported half-year price means for 2024, 2025 and 2026`}
+              />
+              <div className="notice info">
+                <Info size={17} />
+                <p>
+                  {currentSegment.notes} These are Munich city samples, not values for your selected
+                  postcode. Housing mix and typical property sizes change; the line is not a
+                  constant-quality index or an individual valuation. Reports treat current half-year
+                  prices as provisional.
+                </p>
+              </div>
+              <div className="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Observation period</th>
+                      <th>Reported mean / m²</th>
+                      <th>Original evidence</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {MUNICH_REPORTS.map((report, i) => (
+                      <tr key={report.year}>
+                        <td>{report.period}</td>
+                        <td>{euro(currentSegment.values[i])}</td>
+                        <td>
+                          <a href={report.url} target="_blank" rel="noreferrer">
+                            Municipal report · p. 9 <ExternalLink size={12} />
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="microcopy">
+                Reviewed {BAVARIA_REVIEWED}; 2025 uses the corrected November publication. This
+                selected factual extract is maintained manually. For newer publications and the full
+                historical charts, check{' '}
+                <a href={BAVARIA_LINKS.munich} target="_blank" rel="noreferrer">
+                  Munich’s report archive
+                </a>
+                .
+              </p>
+            </div>
+          </section>
+          <section className="card">
+            <div className="card-heading">
+              <div>
+                <h2>Explore the state’s own market dashboard.</h2>
+                <p>
+                  2026 report · regional housing-price evidence, city/county comparisons and market
+                  activity.
+                </p>
+              </div>
+              <a
+                className="icon-button"
+                href={BAVARIA_LINKS.dashboard}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open official Bavaria dashboard"
+              >
+                <ExternalLink size={18} />
+              </a>
+            </div>
+            <div className="padded">
+              <p className="body-copy">
+                The official interactive dashboard gives access to Bavaria’s published local
+                evidence. We link and embed the original so its methodology, updates and attribution
+                stay visible. For Nürnberg, the{' '}
+                <a href={BAVARIA_LINKS.nuremberg} target="_blank" rel="noreferrer">
+                  city’s market summary
+                </a>{' '}
+                also explains current completed-sale ranges and segment differences.
+              </p>
+              <button className="secondary-button" onClick={() => setEmbed(!embed)}>
+                {embed ? 'Close embedded dashboard' : 'Load official interactive dashboard'}
+                <ArrowUpRight size={15} />
+              </button>
+              <p className="microcopy">
+                Loading the embed connects to Infogram, a third-party service used by the Bavarian
+                publisher, and may use its cookies. You can instead open the original link above.
+              </p>
+              {embed && (
+                <iframe
+                  className="official-dashboard"
+                  src={BAVARIA_LINKS.dashboardEmbed}
+                  title="Official Bavarian property market dashboard 2026"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  allowFullScreen
+                />
+              )}
+            </div>
+          </section>
+          <section className="card">
+            <div className="card-heading">
+              <div>
+                <h2>How has the broader market moved?</h2>
+                <p>
+                  Transaction-based house-price index · 2025 = 100. This is national, not a local
+                  €/m² estimate.
+                </p>
+              </div>
+              <select
+                aria-label="National history range"
+                value={nationalRange}
+                onChange={(e) => setNationalRange(e.target.value)}
+              >
+                <option value="all">Since 2015</option>
+                <option value="2020">Since 2020</option>
+                <option value="2023">Since 2023</option>
+              </select>
+            </div>
+            <div className="padded">
+              {national.loading && <p>Loading official historical data…</p>}
+              {national.error && (
+                <div className="notice warning">
+                  {national.error}
+                  <button onClick={national.reload}>Retry</button>
+                </div>
+              )}
+              {latest && (
+                <>
+                  <div className="index-stats">
+                    <div>
+                      <span>
+                        Latest · {latest.period}
+                        {latest.status.includes('p') ? ' · provisional' : ''}
+                      </span>
+                      <b>{latest.value.toFixed(1)}</b>
+                    </div>
+                    <div>
+                      <span>Year-on-year change</span>
+                      <b>
+                        {previousYear
+                          ? `${percent((latest.value / previousYear.value - 1) * 100)}`
+                          : 'Unavailable'}
+                      </b>
+                    </div>
+                    <div>
+                      <span>Geographic coverage</span>
+                      <b>Germany overall</b>
+                    </div>
+                  </div>
+                  <LineChart
+                    points={filteredNational.map((o) => ({
+                      label: `${o.period}${o.status.includes('p') ? '*' : ''}`,
+                      value: o.value,
+                    }))}
+                    valueLabel={(n) => n.toFixed(1)}
+                    label="German national transaction house-price index from Eurostat / Destatis, base 2025 = 100"
+                  />
+                  <p className="microcopy">
+                    Eurostat / Destatis · * provisional. Source update:{' '}
+                    {national.data!.sourceUpdated}. Retrieved{' '}
+                    {national.data!.retrievedAt.slice(0, 10)}.{' '}
+                    <a href={national.data!.url} target="_blank" rel="noreferrer">
+                      Original data
+                    </a>
+                    . National change cannot establish the past sale value of a particular home.
+                  </p>
+                </>
+              )}
+            </div>
+          </section>
+          <Comparables targetPrice={inputs.price} area={area} place={place} />
+          <section className="card">
+            <div className="card-heading">
+              <div>
+                <h2>NRW · local property reference values</h2>
+                <p>Actual official norm-property reference records and historical summaries.</p>
+              </div>
+            </div>
+            {nrwEnabled ? (
+              <NrwPanel place={place} />
+            ) : (
+              <div className="padded">
+                <p className="body-copy">
+                  Beyond Bavaria, explore over 380 NRW municipalities in the retained source files.
+                  Ambiguous source locations are withheld. The detailed dataset loads on request.
+                </p>
+                <button className="secondary-button" onClick={() => setNrwEnabled(true)}>
+                  Load NRW reference data <Download size={15} />
+                </button>
+              </div>
+            )}
+          </section>
         </div>
-        {nrwEnabled ? (
-          <NrwPanel place={place} />
-        ) : (
-          <div className="padded">
-            <p className="body-copy">
-              Beyond Bavaria, explore over 380 NRW municipalities in the retained source files.
-              Ambiguous source locations are withheld. The detailed dataset loads on request.
-            </p>
-            <button className="secondary-button" onClick={() => setNrwEnabled(true)}>
-              Load NRW reference data <Download size={15} />
-            </button>
-          </div>
-        )}
-      </section>
+      </details>
     </div>
   );
 }
