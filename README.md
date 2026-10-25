@@ -20,7 +20,7 @@ Built with React, TypeScript and Vite. Static hosting, no account, backend, anal
 - Munich half-year purchase-price samples for eight segments, with 2024, corrected 2025 and 2026 original reports.
 - On-demand embed of Bavaria's official regional market dashboard, plus BORIS and local committee resources.
 - National transaction-price history since 2015 from Eurostat / Destatis, including provisional flags.
-- Official NRW residential reference records for 386 municipalities, with selected historical reference-year summaries.
+- Official NRW residential reference records, with selected historical summaries. Of 386 source municipality codes, 381 are displayed; five conflicting location labels are withheld.
 - Your own local comparable-evidence ledger: asking prices and documented sales stay separate, with location/type/date filters, source links and backups.
 - A plain-language mortgage guide and device-local buying checklist.
 

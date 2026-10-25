@@ -16,6 +16,7 @@ import { LineChart } from '../components/Charts';
 import { NumberField } from '../components/InputsPanel';
 import { downloadFile } from '../components/PlanResults';
 import { BAVARIA_LINKS, BAVARIA_REVIEWED, MUNICH_REPORTS, MUNICH_SEGMENTS } from '../data/bavaria';
+import { availableNrwTowns, NRW_WITHHELD } from '../data/nrwQuality';
 import { euro, percent, type Inputs } from '../lib/mortgage';
 import {
   STATE_KEYS,
@@ -459,8 +460,8 @@ export default function Location({
         ) : (
           <div className="padded">
             <p className="body-copy">
-              Beyond Bavaria, explore 386 NRW municipalities in the retained source files. The
-              detailed dataset is loaded only when requested.
+              Beyond Bavaria, explore over 380 NRW municipalities in the retained source files.
+              Ambiguous source locations are withheld. The detailed dataset loads on request.
             </p>
             <button className="secondary-button" onClick={() => setNrwEnabled(true)}>
               Load NRW reference data <Download size={15} />
@@ -475,7 +476,10 @@ export default function Location({
 function NrwPanel({ place }: { place: Locality | null }) {
   const nrw = useDataset<NrwData>('data/nrw.json', validateNrw);
   const [municipality, setMunicipality] = useState(
-    place?.federalState.key === '05' ? (place.municipality?.key ?? '05315000') : '05315000',
+    place?.federalState.key === '05' &&
+      !NRW_WITHHELD.some((item) => item.key === place.municipality?.key)
+      ? (place.municipality?.key ?? '05315000')
+      : '05315000',
   );
   const [type, setType] = useState(1),
     [group, setGroup] = useState('3'),
@@ -491,24 +495,54 @@ function NrwPanel({ place }: { place: Locality | null }) {
         </button>
       </div>
     );
+  const towns = availableNrwTowns(data.towns);
+  const attributable = towns.some(([key]) => key === municipality);
   const zones = data.zones.filter(
     (z) =>
+      attributable &&
       z[0] === municipality &&
       z[3] === type &&
       z[4] === group &&
       z[2].toLowerCase().includes(district.toLowerCase()),
   );
   const history = data.history
-    .filter((h) => h.municipality === municipality && h.type === type && h.group === group)
+    .filter(
+      (h) =>
+        attributable && h.municipality === municipality && h.type === type && h.group === group,
+    )
     .sort((a, b) => a.year - b.year);
   const med = median(zones.map((z) => z[7]));
   return (
     <div className="padded">
+      <details className="notice warning">
+        <summary>
+          {Object.keys(data.towns).length - towns.length} ambiguous source locations withheld
+        </summary>
+        <p>
+          Some source municipality names conflict with the OpenPLZ directory's official keys. Their
+          reference records and historical summaries are hidden until attribution is resolved. No
+          values have been reassigned. Reviewed 25 October 2026.
+        </p>
+        <ul>
+          {NRW_WITHHELD.map((item) => (
+            <li key={item.key}>
+              {item.key}: source “{item.source}”; directory “{item.directory}”.
+            </li>
+          ))}
+        </ul>
+        <a
+          href="https://openplzapi.org/de/FederalStates/05/Municipalities?pageSize=50"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Check the municipality directory
+        </a>
+      </details>
       <div className="filter-grid">
         <label className="field">
           <span className="field-label">Municipality</span>
           <select value={municipality} onChange={(e) => setMunicipality(e.target.value)}>
-            {Object.entries(data.towns)
+            {towns
               .sort((a, b) => a[1].localeCompare(b[1], 'de'))
               .map(([id, name]) => (
                 <option key={id} value={id}>

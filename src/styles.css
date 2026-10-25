@@ -726,6 +726,17 @@ summary::-webkit-details-marker {
   color: #784b1a;
   border: 1px solid #eadac1;
 }
+details.notice {
+  display: block;
+  margin-bottom: 16px;
+}
+details.notice summary {
+  cursor: pointer;
+}
+details.notice p,
+details.notice ul {
+  margin: 12px 0;
+}
 .notice.info {
   background: #f1f3f6;
   color: #454c56;

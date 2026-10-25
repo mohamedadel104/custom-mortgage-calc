@@ -55,3 +55,5 @@ Final inspector results: calculator 0 FAIL / 1 WARN; location 0 / 0; comparison 
 Final production screenshots and measurements are generated under `.taste-skill/` (ignored build/review output). The checked-in preview is `preview.jpg`. The input examples are synthetic: Bavaria, €450,000 purchase price, €120,000 savings, €15,000 reserve and 3.75% illustrative interest. They must be replaced by a user's own assumptions, not presented as a bank offer.
 
 Remaining limits: local price coverage varies; Munich extracts are manually reviewed; Bavaria's broader local dashboard remains the official third-party original. Long evidence tables scroll within their frame on phones. The self-review is not a claim of award-level quality or a blind user study.
+
+Post-review data correction: five NRW source codes with conflicting municipality labels are withheld from the selector, records and historical summaries. The loaded-data view explains the exclusions in an expandable note. Source records remain unchanged for reproducibility. This is an attribution safeguard, not another art-direction round.

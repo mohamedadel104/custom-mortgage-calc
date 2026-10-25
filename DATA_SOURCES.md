@@ -15,6 +15,12 @@ Code licensing does not change a publisher's rights in its data, reports, fonts 
 
 ## Statistical interpretation
 
+### NRW attribution conflicts
+
+Reviewed 2026-10-25 against the [OpenPLZ NRW municipality directory](https://openplzapi.org/de/FederalStates/05/Municipalities?pageSize=50) (396 directory entries over eight pages). Five source codes carry a label inconsistent with that directory: `05974004` (Bad Sassendorf / Anröchte), `05974028` (Welver / Lippstadt), `05758032` (Vlotho / Spenge), `05758020` (Löhne / Kirchlengern), and `05758024` (Rödinghausen / Löhne). Neither the source name nor the code alone establishes which location the values belong to.
+
+The UI withholds all reference records and historical summaries for those codes, without reassigning them. The original snapshot retains the published records for reproducibility. Of 386 source codes, 381 remain selectable. `src/data/nrwQuality.ts` holds the reviewed exclusions; any new duplicate municipality label is also withheld automatically. Review exclusions against corrected publisher files before removing them. A successful monthly import does not resolve an attribution conflict.
+
 - An asking price is not a completed sale. Never mix them in a price distribution.
 - An official land reference value does not include a home's building value. NRW **Immobilienrichtwerte** are a different product from **Bodenrichtwerte**.
 - A median over reference zones is not a median over transactions. It is unweighted by area or sales volume, and changing coverage can move it even if underlying values do not change.
