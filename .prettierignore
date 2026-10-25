@@ -1,0 +1,7 @@
+node_modules
+dist
+tmp
+.taste-skill
+design/skills
+public/data
+package-lock.json

@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-25T17:24:18.308Z",
+  "sourceUpdated": "2026-10-01T11:00:00+0200",
+  "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hpi_q?geo=DE&purchase=TOTAL&unit=I25_Q&sinceTimePeriod=2015-Q1",
+  "source": "Eurostat · Destatis",
+  "dataset": "prc_hpi_q",
+  "scope": "Germany nationally; all dwellings purchased by households",
+  "unit": "Index · 2025 = 100",
+  "observations": [
+    {
+      "period": "2015-Q1",
+      "value": 64,
+      "status": ""
+    },
+    {
+      "period": "2015-Q2",
+      "value": 65.5,
+      "status": ""
+    },
+    {
+      "period": "2015-Q3",
+      "value": 65.8,
+      "status": ""
+    },
+    {
+      "period": "2015-Q4",
+      "value": 66.7,
+      "status": ""
+    },
+    {
+      "period": "2016-Q1",
+      "value": 68,
+      "status": ""
+    },
+    {
+      "period": "2016-Q2",
+      "value": 70,
+      "status": ""
+    },
+    {
+      "period": "2016-Q3",
+      "value": 71.2,
+      "status": ""
+    },
+    {
+      "period": "2016-Q4",
+      "value": 72.3,
+      "status": ""
+    },
+    {
+      "period": "2017-Q1",
+      "value": 72.7,
+      "status": ""
+    },
+    {
+      "period": "2017-Q2",
+      "value": 74.1,
+      "status": ""
+    },
+    {
+      "period": "2017-Q3",
+      "value": 75.3,
+      "status": ""
+    },
+    {
+      "period": "2017-Q4",
+      "value": 76.8,
+      "status": ""
+    },
+    {
+      "period": "2018-Q1",
+      "value": 77.5,
+      "status": ""
+    },
+    {
+      "period": "2018-Q2",
+      "value": 79,
+      "status": ""
+    },
+    {
+      "period": "2018-Q3",
+      "value": 80.6,
+      "status": ""
+    },
+    {
+      "period": "2018-Q4",
+      "value": 81.6,
+      "status": ""
+    },
+    {
+      "period": "2019-Q1",
+      "value": 81.6,
+      "status": ""
+    },
+    {
+      "period": "2019-Q2",
+      "value": 83.7,
+      "status": ""
+    },
+    {
+      "period": "2019-Q3",
+      "value": 84.9,
+      "status": ""
+    },
+    {
+      "period": "2019-Q4",
+      "value": 86.9,
+      "status": ""
+    },
+    {
+      "period": "2020-Q1",
+      "value": 87.6,
+      "status": ""
+    },
+    {
+      "period": "2020-Q2",
+      "value": 89.2,
+      "status": ""
+    },
+    {
+      "period": "2020-Q3",
+      "value": 91.9,
+      "status": ""
+    },
+    {
+      "period": "2020-Q4",
+      "value": 94.5,
+      "status": ""
+    },
+    {
+      "period": "2021-Q1",
+      "value": 95.8,
+      "status": ""
+    },
+    {
+      "period": "2021-Q2",
+      "value": 99.5,
+      "status": ""
+    },
+    {
+      "period": "2021-Q3",
+      "value": 103.6,
+      "status": ""
+    },
+    {
+      "period": "2021-Q4",
+      "value": 106.5,
+      "status": ""
+    },
+    {
+      "period": "2022-Q1",
+      "value": 107.5,
+      "status": ""
+    },
+    {
+      "period": "2022-Q2",
+      "value": 109.6,
+      "status": ""
+    },
+    {
+      "period": "2022-Q3",
+      "value": 108.9,
+      "status": ""
+    },
+    {
+      "period": "2022-Q4",
+      "value": 103.8,
+      "status": ""
+    },
+    {
+      "period": "2023-Q1",
+      "value": 100.7,
+      "status": ""
+    },
+    {
+      "period": "2023-Q2",
+      "value": 99.3,
+      "status": ""
+    },
+    {
+      "period": "2023-Q3",
+      "value": 97.8,
+      "status": ""
+    },
+    {
+      "period": "2023-Q4",
+      "value": 95.9,
+      "status": ""
+    },
+    {
+      "period": "2024-Q1",
+      "value": 95.5,
+      "status": ""
+    },
+    {
+      "period": "2024-Q2",
+      "value": 96.8,
+      "status": ""
+    },
+    {
+      "period": "2024-Q3",
+      "value": 97.6,
+      "status": ""
+    },
+    {
+      "period": "2024-Q4",
+      "value": 97.7,
+      "status": ""
+    },
+    {
+      "period": "2025-Q1",
+      "value": 99.1,
+      "status": ""
+    },
+    {
+      "period": "2025-Q2",
+      "value": 100,
+      "status": ""
+    },
+    {
+      "period": "2025-Q3",
+      "value": 100.7,
+      "status": ""
+    },
+    {
+      "period": "2025-Q4",
+      "value": 100.2,
+      "status": ""
+    },
+    {
+      "period": "2026-Q1",
+      "value": 100.3,
+      "status": "p"
+    },
+    {
+      "period": "2026-Q2",
+      "value": 100.6,
+      "status": "p"
+    }
+  ]
+}
