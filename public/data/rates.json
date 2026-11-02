@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-10-25T18:36:50.332Z",
+  "retrievedAt": "2026-11-02T17:12:50.987Z",
   "provider": "European Central Bank · national data from Deutsche Bundesbank",
   "frequency": "monthly",
   "unit": "percent per annum",
@@ -12,7 +12,7 @@
       "label": "Over 1–5 years fixed",
       "url": "https://data-api.ecb.europa.eu/service/data/MIR/M.DE.B.A2C.I.R.A.2250.EUR.N?format=csvdata&startPeriod=2003-01",
       "latest": {
-        "period": "2026-08",
+        "period": "2026-09",
         "value": 4.03
       },
       "observations": [
@@ -1151,6 +1151,10 @@
         {
           "period": "2026-08",
           "value": 4.03
+        },
+        {
+          "period": "2026-09",
+          "value": 4.03
         }
       ]
     },
@@ -1160,8 +1164,8 @@
       "label": "Over 5–10 years fixed",
       "url": "https://data-api.ecb.europa.eu/service/data/MIR/M.DE.B.A2C.O.R.A.2250.EUR.N?format=csvdata&startPeriod=2003-01",
       "latest": {
-        "period": "2026-08",
-        "value": 3.81
+        "period": "2026-09",
+        "value": 3.91
       },
       "observations": [
         {
@@ -2299,6 +2303,10 @@
         {
           "period": "2026-08",
           "value": 3.81
+        },
+        {
+          "period": "2026-09",
+          "value": 3.91
         }
       ]
     },
@@ -2308,8 +2316,8 @@
       "label": "Over 10 years fixed",
       "url": "https://data-api.ecb.europa.eu/service/data/MIR/M.DE.B.A2C.P.R.A.2250.EUR.N?format=csvdata&startPeriod=2003-01",
       "latest": {
-        "period": "2026-08",
-        "value": 4.04
+        "period": "2026-09",
+        "value": 4.13
       },
       "observations": [
         {
@@ -3447,6 +3455,10 @@
         {
           "period": "2026-08",
           "value": 4.04
+        },
+        {
+          "period": "2026-09",
+          "value": 4.13
         }
       ]
     }
